@@ -5,6 +5,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [Header("References:")]
+    [SerializeField] private GunSightController _gunSightController;
     [SerializeField] private Transform _bulletSpawnLocation;
     [SerializeField] private Transform _reloadAnimator;
     [SerializeField] private Transform _recoilAnimator;
@@ -71,6 +72,8 @@ public class Gun : MonoBehaviour
         if (_isReloading)
         {
             _reloadingTimer -= Time.deltaTime;
+            _gunSightController.isAiming = false;
+
             if (_reloadingTimer <= 0)
             {
                 FinishReload();
@@ -93,6 +96,8 @@ public class Gun : MonoBehaviour
         {
             Shoot();
         }
+
+        _gunSightController.isAiming = Input.GetMouseButton(1);
     }
 
     public void AnimateTopModel()
@@ -166,6 +171,9 @@ public class Gun : MonoBehaviour
         Debug.Log("Reloaded");
     }
     
-    
+    public void AddNewSight(Transform newSight)
+    {
+        _gunSightController.AddSight(newSight);
+    }
 
 }
