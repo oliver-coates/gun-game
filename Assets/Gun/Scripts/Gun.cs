@@ -5,8 +5,10 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [Header("References:")]
+    [SerializeField] private GunSightController _gunSightController;
     [SerializeField] private Transform _bulletSpawnLocation;
-    [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private Transform _reloadAnimator;
+    [SerializeField] private Transform _recoilAnimator;
 
 
     [Header("Stats:")]
@@ -62,6 +64,7 @@ public class Gun : MonoBehaviour
     private void Update()
     {    
         ListenForInput();
+        AnimateTopModel();
     }
 
     private void ListenForInput()
@@ -69,6 +72,8 @@ public class Gun : MonoBehaviour
         if (_isReloading)
         {
             _reloadingTimer -= Time.deltaTime;
+            _gunSightController.isAiming = false;
+
             if (_reloadingTimer <= 0)
             {
                 FinishReload();
@@ -91,6 +96,40 @@ public class Gun : MonoBehaviour
         {
             Shoot();
         }
+
+        _gunSightController.isAiming = Input.GetMouseButton(1);
+    }
+
+    public void AnimateTopModel()
+    {
+        if (_isReloading)
+        {
+            float lerpRaw = _reloadingTimer / _reloadTime;
+            float lerpAmount = Mathf.PingPong(lerpRaw * 2f, 1f); 
+            
+            // Animate Position
+            Vector3 basePosition = Vector3.zero;
+            Vector3 reloadPosition = Vector3.down * 0.7f + Vector3.back * 0.5f;
+
+            _reloadAnimator.localPosition = Vector3.Lerp(basePosition, reloadPosition, lerpAmount);
+
+            // Animate Rotation
+            Quaternion baseRotation = Quaternion.identity;
+            Quaternion reloadRotation = Quaternion.Euler(70, 0, 0);
+
+            _reloadAnimator.localRotation = Quaternion.Slerp(baseRotation, reloadRotation, lerpAmount);
+        }
+
+        if (_isOnFirerateCooldown)
+        {
+            Vector3 basePosition = Vector3.zero;
+            Vector3 recoilPosition = Vector3.back * _bulletForce * 0.001f;
+
+            float lerpAmount = _firerateTimer / _firerate;
+
+            _recoilAnimator.localPosition = Vector3.Lerp(basePosition, recoilPosition, lerpAmount);
+        }
+
     }
 
     #endregion
@@ -132,4 +171,9 @@ public class Gun : MonoBehaviour
         Debug.Log("Reloaded");
     }
     
+    public void AddNewSight(Transform newSight)
+    {
+        _gunSightController.AddSight(newSight);
+    }
+
 }
