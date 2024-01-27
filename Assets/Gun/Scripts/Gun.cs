@@ -10,6 +10,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private GunSightController _gunSightController;
     [SerializeField] private Transform _reloadAnimator;
     [SerializeField] private Transform _recoilAnimator;
+    public AudioSource _audioSource;
 
     #region Stats
     [Header("Base Stats:")]
@@ -72,6 +73,13 @@ public class Gun : MonoBehaviour
     [SerializeField] private List<Transform> _underbarrelSockets;
     [SerializeField] private List<Transform> _sightSockets;
     [SerializeField] private List<Transform> _magazineSockets;
+
+    #endregion
+
+    #region Audio
+
+    [SerializeField] private List<AudioClip> _shootSounds;
+    [SerializeField] private AudioClip _reloadSound;
 
     #endregion
 
@@ -209,6 +217,10 @@ public class Gun : MonoBehaviour
             // Spawn bullet 
             Bullet bullet = BulletObjectPool.RequestBulletFromPool<Bullet>();
             bullet.Init(spawnPosition, spawnRotation, spawnForce, _damage);
+
+            // Play random sound
+            AudioClip randSound = _shootSounds[Random.Range(0, _shootSounds.Count)];
+            _audioSource.PlayOneShot(randSound, _gunSound);
         }
         
     }
@@ -216,6 +228,8 @@ public class Gun : MonoBehaviour
     private void StartReload()
     {
         _reloadingTimer = _reloadTime;
+
+        _audioSource.PlayOneShot(_reloadSound);
     }
 
     private void FinishReload()
