@@ -180,7 +180,7 @@ public class Gun : MonoBehaviour
             _damage = _damage * attachment.damageMultiplier;
             _gunSound = _gunSound * attachment.soundMultiplier;
             _accuracy = _accuracy * attachment.accuracyMultiplier;
-            _magazineSize += _magazineSize;
+            _magazineSize += attachment.magSize;
             _bulletForce = _bulletForce * attachment.forceMultiplier;
         }
     }
