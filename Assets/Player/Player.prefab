@@ -92,7 +92,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 910553172}
+  - {fileID: 4076282245201879423}
   m_Father: {fileID: 204443278}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -146,6 +146,8 @@ MonoBehaviour:
   _gunSightController: {fileID: 1071894413}
   _reloadAnimator: {fileID: 910553172}
   _recoilAnimator: {fileID: 17194813}
+  _sprintAnimator: {fileID: 4076282245201879423}
+  _playerMovement: {fileID: 4728993169872269268}
   _audioSource: {fileID: 649946959}
   _firerate: 0.2
   _damage: 0
@@ -153,6 +155,7 @@ MonoBehaviour:
   _reloadTime: 1.5
   _bulletForce: 200
   _accuracy: 1
+  _bulletSpawnRandomRot: 0
   _magazineSize: 25
   _ammo: 0
   _accuracyTuner: 0.05
@@ -426,7 +429,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 17194813}
-  m_Father: {fileID: 449235823}
+  m_Father: {fileID: 4076282245201879423}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1071894411
@@ -1338,6 +1341,38 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7274121911934725539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4076282245201879423}
+  m_Layer: 0
+  m_Name: Sprint Animator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4076282245201879423
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7274121911934725539}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 910553172}
+  m_Father: {fileID: 449235823}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7976298491650735008
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,6 +1426,8 @@ MonoBehaviour:
   playerSpeed: 8
   jumpHeight: 1
   gravityValue: -9.81
+  sprintSpeedMultiplier: 0
+  isSprinting: 0
   camPivot: {fileID: 6177294217810643211}
   mouseSensitivity: 1
 --- !u!143 &2318700579299061308

@@ -86,6 +86,7 @@ MonoBehaviour:
   soundMultiplier: 1.5
   accuracyMultiplier: 0.8
   forceMultiplier: 0.7
+  bulletRandomRotation: 0.2
   magSize: 0
 --- !u!1001 &8450241544883823752
 PrefabInstance:

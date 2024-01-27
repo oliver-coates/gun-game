@@ -10,6 +10,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private GunSightController _gunSightController;
     [SerializeField] private Transform _reloadAnimator;
     [SerializeField] private Transform _recoilAnimator;
+    [SerializeField] private Transform _sprintAnimator;
+    [SerializeField] private PlayerMovement _playerMovement;
     public AudioSource _audioSource;
 
     #region Stats
@@ -20,6 +22,7 @@ public class Gun : MonoBehaviour
     private readonly float _baseGunSound = 1;
     private readonly float _baseBulletForce = 100;
     private readonly float _baseAccuracy = 0.5f;
+    private readonly float _baseBulletSpawnRandomRot = 0f;
 
     [Header("Actual Stats (read only):")]
     [SerializeField] private float _firerate;
@@ -28,6 +31,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private float _reloadTime;
     [SerializeField] private float _bulletForce;
     [SerializeField] private float _accuracy;
+    [SerializeField] private float _bulletSpawnRandomRot;
 
     [Header("Magazine:")]
     [SerializeField] private float _magazineSize = 25;
@@ -64,6 +68,9 @@ public class Gun : MonoBehaviour
             return (_ammo > 0);
         }
     }
+    
+    private float _sprintTimer;
+    private float _sprintRotationTimer;
     #endregion
 
     #region Slots
@@ -138,6 +145,9 @@ public class Gun : MonoBehaviour
         _gunSightController.isAiming = Input.GetMouseButton(1);
     }
 
+    #endregion
+
+
     public void AnimateTopModel()
     {
         if (_isReloading)
@@ -168,9 +178,47 @@ public class Gun : MonoBehaviour
             _recoilAnimator.localPosition = Vector3.Lerp(basePosition, recoilPosition, lerpAmount);
         }
 
+        UpdateSprinting();
     }
 
-    #endregion
+    private void UpdateSprinting()
+    {
+        _sprintTimer = Mathf.Clamp(_sprintTimer, 0f, 4f);
+        _sprintRotationTimer = Mathf.Clamp(_sprintRotationTimer, 0f, 1f);
+
+        if (_sprintTimer == 4f)
+        {
+            _sprintTimer = 2f;
+        }
+
+        Vector3 basePosition = Vector3.zero;
+        Vector3 sprintPosition = new Vector3(-0.145f, -0.02f, -0.07f);
+        Quaternion sprintRotation = Quaternion.Euler(20f, -41f, 3.15f);
+
+        float sprintLerpAmount = 0f;
+
+        if (_playerMovement.isSprinting)
+        {
+            _sprintTimer += Time.deltaTime;
+
+            sprintLerpAmount = Mathf.PingPong(_sprintTimer, 0.2f);
+            _sprintRotationTimer += Time.deltaTime * 4f;
+        }
+        else
+        {
+            _sprintTimer -= Time.deltaTime;
+
+            sprintLerpAmount -= Time.deltaTime * 0.5f;
+            _sprintRotationTimer -= Time.deltaTime * 4f;
+        }
+
+        
+
+    
+        _sprintAnimator.transform.localPosition = Vector3.Lerp(basePosition, sprintPosition, sprintLerpAmount);
+        _sprintAnimator.transform.localRotation = Quaternion.Slerp(Quaternion.identity, sprintRotation, _sprintRotationTimer);
+    }
+
 
     private void UpdateStats()
     {
@@ -181,6 +229,7 @@ public class Gun : MonoBehaviour
         _magazineSize = 0;
         _reloadTime = _baseReloadTime;
         _bulletForce = _baseBulletForce;
+        _bulletSpawnRandomRot = _baseBulletSpawnRandomRot;
 
         foreach(Attachment attachment in _allAttachments)
         {
@@ -189,7 +238,10 @@ public class Gun : MonoBehaviour
             _gunSound = _gunSound * attachment.soundMultiplier;
             _accuracy = _accuracy * attachment.accuracyMultiplier;
             _magazineSize += attachment.magSize;
+
+            _bulletSpawnRandomRot += attachment.bulletRandomRotation;
             _bulletForce = _bulletForce * attachment.forceMultiplier;
+            
         }
     }
 
@@ -202,7 +254,9 @@ public class Gun : MonoBehaviour
 
             // Determine spawn pos and random roation
             Vector3 spawnPosition = bulletSpawnLocation.position;
-            Quaternion spawnRotation = Random.rotation;
+            
+            Quaternion forwardRotation = Quaternion.LookRotation(bulletSpawnLocation.forward);
+            Quaternion spawnRotation = Quaternion.Lerp(forwardRotation, Random.rotation, _bulletSpawnRandomRot);
 
             // Determine what direction the bullet should fly
             Vector3 forceDirection = bulletSpawnLocation.forward;

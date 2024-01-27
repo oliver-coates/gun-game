@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     [Range(-20f, -1f)]
     public float gravityValue = -9.81f;
 
+    public float sprintSpeedMultiplier;
+    public bool isSprinting;
+
     private Vector3 move;
 
     //the camera pivot and mouse movements stuff
@@ -36,8 +39,30 @@ public class PlayerMovement : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
+        bool playerMoving = (Input.GetAxis("Horizontal") != 0f || Input.GetAxis("Vertical") != 0f);
+
+        if (Input.GetKey(KeyCode.LeftShift) && playerMoving)
+        {
+            isSprinting = true;
+        }
+        else
+        {
+            isSprinting = false;
+        }
+
         move = Vector3.Lerp(move, transform.TransformVector( new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"))),0.1f);
-        controller.Move(move * Time.deltaTime * playerSpeed);
+        
+        float speedMultiplier = 0f;
+        if (isSprinting)
+        {
+            speedMultiplier = playerSpeed * sprintSpeedMultiplier;
+        }
+        else
+        {
+            speedMultiplier = playerSpeed;
+        }
+        
+        controller.Move(move * Time.deltaTime * speedMultiplier);
 
         // Changes the height position of the player..
         if (Input.GetButtonDown("Jump") && groundedPlayer)
@@ -46,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
+
         controller.Move(playerVelocity * Time.deltaTime);
 
 

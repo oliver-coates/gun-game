@@ -23,6 +23,8 @@ public class Attachment : MonoBehaviour
     public float accuracyMultiplier;
     public float forceMultiplier;
 
+    public float bulletRandomRotation;
+
     public float magSize;
 
 
