@@ -24,7 +24,6 @@ public class Attachment : MonoBehaviour
     public float forceMultiplier;
 
     public float magSize;
-    
 
 
 }

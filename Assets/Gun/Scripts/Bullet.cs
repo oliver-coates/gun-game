@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     [Header("Settings:")]
     [SerializeField] private float _lifeTime = 3f;
     private float _lifeTimeTimer;
+    public float damage;
 
     private void Awake()
     {
@@ -19,9 +20,11 @@ public class Bullet : MonoBehaviour
 
 
     // Called upon being removed from pool
-    public void Init(Vector3 spawnPos, Quaternion spawnRot, Vector3 spawnForce)
+    public void Init(Vector3 spawnPos, Quaternion spawnRot, Vector3 spawnForce, float damage)
     {
         _lifeTimeTimer = _lifeTime;
+        
+        this.damage = damage;
 
         transform.position = spawnPos;
         transform.rotation = spawnRot;

@@ -208,7 +208,7 @@ public class Gun : MonoBehaviour
             
             // Spawn bullet 
             Bullet bullet = BulletObjectPool.RequestBulletFromPool<Bullet>();
-            bullet.Init(spawnPosition, spawnRotation, spawnForce);
+            bullet.Init(spawnPosition, spawnRotation, spawnForce, _damage);
         }
         
     }
@@ -216,14 +216,11 @@ public class Gun : MonoBehaviour
     private void StartReload()
     {
         _reloadingTimer = _reloadTime;
-
-        Debug.Log("Started Reloading");
     }
 
     private void FinishReload()
     {
         _ammo = _magazineSize;
-        Debug.Log("Reloaded");
     }
     
     public void AddNewSight(Transform newSight)

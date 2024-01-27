@@ -793,14 +793,14 @@ MonoBehaviour:
   silencer: {fileID: 6992839992264266920, guid: 214cffe9acd4c094e9b58d5da5958447, type: 3}
   redDot: {fileID: 6992839992264266920, guid: 40daf1df2a1a2c842b839d5d23780eb3, type: 3}
   Acog: {fileID: 6992839992264266920, guid: 2201340329e986141947ef3bd3f71a5d, type: 3}
-  opticalScope: {fileID: 0}
+  opticalScope: {fileID: 6992839992264266920, guid: 40033a717fa0c84489521832e9c19d4a, type: 3}
   laser: {fileID: 6992839992264266920, guid: 87231abe39a6d1f4ab253d12606b2a82, type: 3}
   flashlight: {fileID: 6992839992264266920, guid: ad191d5452abd164587c691fe2dab36a, type: 3}
   grenadeLauncher: {fileID: 6992839992264266920, guid: 1fd062a9375e22b4fb559061f802e4fe, type: 3}
   mirror: {fileID: 0}
   standardMag: {fileID: 6992839992264266920, guid: 91efc98527c60a14a90c6448446ac2ba, type: 3}
   largeMag: {fileID: 6992839992264266920, guid: 8d2d5fe4781a260448f5d67422fc61bc, type: 3}
-  drumMag: {fileID: 0}
+  drumMag: {fileID: 6992839992264266920, guid: f42abcb208ec9344ba6265749046d792, type: 3}
 --- !u!1 &574033655
 GameObject:
   m_ObjectHideFlags: 0
