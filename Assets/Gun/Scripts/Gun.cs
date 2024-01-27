@@ -20,6 +20,7 @@ public class Gun : MonoBehaviour
     private readonly float _baseGunSound = 1;
     private readonly float _baseBulletForce = 100;
     private readonly float _baseAccuracy = 0.5f;
+    private readonly float _baseBulletSpawnRandomRot = 0f;
 
     [Header("Actual Stats (read only):")]
     [SerializeField] private float _firerate;
@@ -28,6 +29,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private float _reloadTime;
     [SerializeField] private float _bulletForce;
     [SerializeField] private float _accuracy;
+    [SerializeField] private float _bulletSpawnRandomRot;
 
     [Header("Magazine:")]
     [SerializeField] private float _magazineSize = 25;
@@ -181,6 +183,7 @@ public class Gun : MonoBehaviour
         _magazineSize = 0;
         _reloadTime = _baseReloadTime;
         _bulletForce = _baseBulletForce;
+        _bulletSpawnRandomRot = _baseBulletSpawnRandomRot;
 
         foreach(Attachment attachment in _allAttachments)
         {
@@ -189,7 +192,10 @@ public class Gun : MonoBehaviour
             _gunSound = _gunSound * attachment.soundMultiplier;
             _accuracy = _accuracy * attachment.accuracyMultiplier;
             _magazineSize += attachment.magSize;
+
+            _bulletSpawnRandomRot += attachment.bulletRandomRotation;
             _bulletForce = _bulletForce * attachment.forceMultiplier;
+            
         }
     }
 
@@ -202,7 +208,9 @@ public class Gun : MonoBehaviour
 
             // Determine spawn pos and random roation
             Vector3 spawnPosition = bulletSpawnLocation.position;
-            Quaternion spawnRotation = Random.rotation;
+            
+            Quaternion forwardRotation = Quaternion.LookRotation(bulletSpawnLocation.forward);
+            Quaternion spawnRotation = Quaternion.Lerp(forwardRotation, Random.rotation, _bulletSpawnRandomRot);
 
             // Determine what direction the bullet should fly
             Vector3 forceDirection = bulletSpawnLocation.forward;
