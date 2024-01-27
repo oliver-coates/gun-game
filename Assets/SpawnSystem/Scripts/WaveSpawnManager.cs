@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class WaveSpawnManager : MonoBehaviour
@@ -23,6 +24,9 @@ public class WaveSpawnManager : MonoBehaviour
     int numEnemiesToSpawn = 0;
     private int waveNumber = 0;
 
+    //Wave UI Link
+    public TMP_Text waveInfoText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +44,7 @@ public class WaveSpawnManager : MonoBehaviour
         }
         //the main counter reset
         timeUntilNextSpawn = spawnInterval;
+        SpawnEnemies();
     }
 
     // Update is called once per frame
@@ -53,6 +58,7 @@ public class WaveSpawnManager : MonoBehaviour
             SpawnEnemies();
             timeUntilNextSpawn = spawnInterval;
         }
+        UpdateWaveInfoText();
     }
 
     private void SpawnEnemies()
@@ -70,4 +76,10 @@ public class WaveSpawnManager : MonoBehaviour
             var enemy = Instantiate(enemies[randEnemy], spawnPoints[randSpawn].transform.position, spawnPoints[randSpawn].transform.rotation);
         }
     }
+
+    void UpdateWaveInfoText()
+    {
+        waveInfoText.text = $"Next Wave: {((int)timeUntilNextSpawn).ToString()}s";
+    }
+
 }

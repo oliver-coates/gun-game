@@ -49,7 +49,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7511550350483602307}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ea0bceda25bdf14aaba175bf0cc9920, type: 3}
   m_Name: 
@@ -146,13 +146,13 @@ MonoBehaviour:
   minInterval: 0.5
   maxInterval: 4
   audioClips:
-  - {fileID: 8300000, guid: 6b440615b07a63341ae7684c0609a47a, type: 3}
-  - {fileID: 8300000, guid: 13884322d9df9a04d9316ac82455fe84, type: 3}
-  - {fileID: 8300000, guid: d4826e2ede2a6bc46abba85e0a67e2a5, type: 3}
-  - {fileID: 8300000, guid: bc37205f1b8a91b4d8c8f2bc91f5065f, type: 3}
-  - {fileID: 8300000, guid: 54eb7ef78c888e54f803e62e3e01c1b2, type: 3}
-  - {fileID: 8300000, guid: e437250baa2db78499c5aba6adbec65e, type: 3}
-  - {fileID: 8300000, guid: afcceb07d73a88b4e9448325119abec2, type: 3}
+  - {fileID: 8300000, guid: d90add77546b28540a6249944dd36d48, type: 3}
+  - {fileID: 8300000, guid: 3de32f7650915da4fb4e8a40ea79536f, type: 3}
+  - {fileID: 8300000, guid: add2798a4ca21c54f8006e2fe593a0af, type: 3}
+  - {fileID: 8300000, guid: b3a9640d3f68f644bb057b804c69371a, type: 3}
+  - {fileID: 8300000, guid: 1f657d9cfe8981b4fa3df864f7fe8d78, type: 3}
+  - {fileID: 8300000, guid: 23698b8ea440d62448c754aee5ce69b5, type: 3}
+  - {fileID: 8300000, guid: 81e01a5272b73364bbdbe562b40a9919, type: 3}
 --- !u!82 &8015031805796434434
 AudioSource:
   m_ObjectHideFlags: 0
