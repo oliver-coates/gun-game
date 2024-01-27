@@ -22,16 +22,17 @@ public class RagDoll : MonoBehaviour
     {
         enabled = true;
         animator.enabled = false;
-        AddExplosion();
+        StartCoroutine( AddExplosion());
     }
 
 
-    public void AddExplosion()
+    public IEnumerator AddExplosion()
     {
+        yield return new WaitForFixedUpdate();
         var rbs = gameObject.GetComponentsInChildren<Rigidbody>();
         foreach (var rb in rbs)
         {
-            rb.AddExplosionForce(25f, transform.position, 10f, 10f, ForceMode.Impulse);
+            rb.AddExplosionForce(25f, transform.position, 10f, 100f, ForceMode.Impulse);
         }
     }
 }
