@@ -180,7 +180,7 @@ public class Gun : MonoBehaviour
             _damage = _damage * attachment.damageMultiplier;
             _gunSound = _gunSound * attachment.soundMultiplier;
             _accuracy = _accuracy * attachment.accuracyMultiplier;
-            _magazineSize += _magazineSize;
+            _magazineSize += attachment.magSize;
             _bulletForce = _bulletForce * attachment.forceMultiplier;
         }
     }
@@ -282,6 +282,11 @@ public class Gun : MonoBehaviour
         AddSocketsOfType(attachment.type, attachment.sockets);
         
         _allAttachments.Add(attachment);
+
+        foreach(Transform newSight in attachment.sights)
+        {
+            _gunSightController.AddSight(newSight);
+        }
 
         UpdateStats();
     }
