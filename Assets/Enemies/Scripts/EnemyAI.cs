@@ -18,7 +18,7 @@ public class EnemyAI : MonoBehaviour
 
     public EnemyState enemyState = EnemyState.chasing;
     [Range(0f,5f)]
-    public float attackRange = 1f;
+    public float attackRange = 2f;
 
     [Header("Events")]
     public UnityEvent OnEnemyAttacking;
@@ -26,7 +26,7 @@ public class EnemyAI : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         if (playerTransform == null)
@@ -49,17 +49,23 @@ public class EnemyAI : MonoBehaviour
         {
             //move to player
             nav.SetDestination(playerTransform.position);
-            if(distance < 1f)
+            if(distance < attackRange)
             {
-                enemyState = EnemyState.chasing;
+                enemyState = EnemyState.attacking;
                 //invoke an action?
                 OnEnemyAttacking.Invoke();
+                var health = playerTransform.GetComponent<PlayerHealth>();
+                if (health)
+                {
+                    Debug.Log($"{gameObject.name} is Damaging the Player");
+                    health.TakeDamage(10f);
+                }
             }
         }
         else
         {
             //simple two states for now
-            if(distance>= 1f)
+            if(distance >= 1f)
             {
                 enemyState = EnemyState.chasing;
             }
