@@ -58,4 +58,21 @@ public class EnemyHealth : MonoBehaviour
     }
 
 
+    //detect the collisions with bullets
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Bullet")
+        {
+            Debug.Log("Ouch");
+            var bullet = other.GetComponent<Bullet>();
+            if(bullet)
+            {
+                TakeDamage((float)bullet.damage);
+            }
+        }
+    }
+
+
 }
