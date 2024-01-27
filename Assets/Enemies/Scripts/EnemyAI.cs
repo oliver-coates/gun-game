@@ -26,7 +26,7 @@ public class EnemyAI : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         if (playerTransform == null)
@@ -44,6 +44,7 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        nav.SetDestination(playerTransform.position);
         var distance = Vector3.Distance(playerTransform.position, transform.position);
         if (enemyState == EnemyState.chasing)
         {

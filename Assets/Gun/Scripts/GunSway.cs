@@ -7,7 +7,7 @@ public class GunSway : MonoBehaviour
     [SerializeField] private Transform _cameraTransform;
     [SerializeField] private float _swaySpeed;
 
-    private void Update()
+    private void LateUpdate()
     {
         float lerpAmount = _swaySpeed * Time.deltaTime;
 
