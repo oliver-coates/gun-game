@@ -26,6 +26,7 @@ public class Bullet : MonoBehaviour
         transform.position = spawnPos;
         transform.rotation = spawnRot;
         
+        _rb.velocity = Vector3.zero;
         _rb.AddForce(spawnForce);
     }
 
