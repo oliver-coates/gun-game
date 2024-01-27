@@ -22,7 +22,7 @@ public class RagDoll : MonoBehaviour
     {
         enabled = true;
         animator.enabled = false;
-        StartCoroutine( AddExplosion());
+        //StartCoroutine( AddExplosion());
     }
 
 
@@ -32,7 +32,7 @@ public class RagDoll : MonoBehaviour
         var rbs = gameObject.GetComponentsInChildren<Rigidbody>();
         foreach (var rb in rbs)
         {
-            rb.AddExplosionForce(25f, transform.position, 10f, 100f, ForceMode.Impulse);
+            rb.AddExplosionForce(1f, transform.position, 10f, 1f, ForceMode.Impulse);
         }
     }
 }
