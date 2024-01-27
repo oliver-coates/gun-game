@@ -10,6 +10,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private GunSightController _gunSightController;
     [SerializeField] private Transform _reloadAnimator;
     [SerializeField] private Transform _recoilAnimator;
+    [SerializeField] private Transform _sprintAnimator;
+    [SerializeField] private PlayerMovement _playerMovement;
     public AudioSource _audioSource;
 
     #region Stats
@@ -66,6 +68,9 @@ public class Gun : MonoBehaviour
             return (_ammo > 0);
         }
     }
+    
+    private float _sprintTimer;
+    private float _sprintRotationTimer;
     #endregion
 
     #region Slots
@@ -140,6 +145,9 @@ public class Gun : MonoBehaviour
         _gunSightController.isAiming = Input.GetMouseButton(1);
     }
 
+    #endregion
+
+
     public void AnimateTopModel()
     {
         if (_isReloading)
@@ -170,9 +178,47 @@ public class Gun : MonoBehaviour
             _recoilAnimator.localPosition = Vector3.Lerp(basePosition, recoilPosition, lerpAmount);
         }
 
+        UpdateSprinting();
     }
 
-    #endregion
+    private void UpdateSprinting()
+    {
+        _sprintTimer = Mathf.Clamp(_sprintTimer, 0f, 4f);
+        _sprintRotationTimer = Mathf.Clamp(_sprintRotationTimer, 0f, 1f);
+
+        if (_sprintTimer == 4f)
+        {
+            _sprintTimer = 2f;
+        }
+
+        Vector3 basePosition = Vector3.zero;
+        Vector3 sprintPosition = new Vector3(-0.145f, -0.02f, -0.07f);
+        Quaternion sprintRotation = Quaternion.Euler(20f, -41f, 3.15f);
+
+        float sprintLerpAmount = 0f;
+
+        if (_playerMovement.isSprinting)
+        {
+            _sprintTimer += Time.deltaTime;
+
+            sprintLerpAmount = Mathf.PingPong(_sprintTimer, 0.2f);
+            _sprintRotationTimer += Time.deltaTime * 4f;
+        }
+        else
+        {
+            _sprintTimer -= Time.deltaTime;
+
+            sprintLerpAmount -= Time.deltaTime * 0.5f;
+            _sprintRotationTimer -= Time.deltaTime * 4f;
+        }
+
+        
+
+    
+        _sprintAnimator.transform.localPosition = Vector3.Lerp(basePosition, sprintPosition, sprintLerpAmount);
+        _sprintAnimator.transform.localRotation = Quaternion.Slerp(Quaternion.identity, sprintRotation, _sprintRotationTimer);
+    }
+
 
     private void UpdateStats()
     {
