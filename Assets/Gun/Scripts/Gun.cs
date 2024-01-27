@@ -283,6 +283,11 @@ public class Gun : MonoBehaviour
         
         _allAttachments.Add(attachment);
 
+        foreach(Transform newSight in attachment.sights)
+        {
+            _gunSightController.AddSight(newSight);
+        }
+
         UpdateStats();
     }
 }

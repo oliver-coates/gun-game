@@ -7,7 +7,12 @@ public class GunSightController : MonoBehaviour
     public bool isAiming;
 
     [Header("References:")]
-    [SerializeField] private Transform _gunTransform;
+    [SerializeField] private Transform _gunBaseTransform;
+    [SerializeField] private Transform _gunSightReflector;
+    private Transform selectedSightTransform;
+    private Transform selectedSightOldParent;
+
+ 
 
     [Header("Base Transform:")]
     [SerializeField] private Vector3 _baseGunPosition;
@@ -25,15 +30,34 @@ public class GunSightController : MonoBehaviour
 
     private void Awake()
     {
+        _baseGunPosition = _gunBaseTransform.localPosition;
+
+        if (_gunSights == null)
+        {
+            _gunSights = new List<Transform>();
+        }
+
         GetRandomSight();
     }
 
     private void GetRandomSight()
     {
-        Transform sightTransform = _gunSights[Random.Range(0, _gunSights.Count)]; 
-        
-        _sightPosition = transform.position - sightTransform.position;
-        _sightRotation = sightTransform.rotation;
+        if (_gunSights.Count == 0)
+        {
+            _sightPosition = _baseGunPosition;
+            _sightRotation = _baseGunRotation;
+            return;
+        }
+        selectedSightTransform = _gunSights[Random.Range(0, _gunSights.Count)]; 
+
+        _gunSightReflector.transform.localPosition = Vector3.zero;
+        _gunSightReflector.transform.localPosition = -_gunBaseTransform.InverseTransformPoint(selectedSightTransform.position);
+
+        _gunSightReflector.transform.localRotation = Quaternion.identity;
+
+        Vector3 forward = _gunBaseTransform.InverseTransformDirection(selectedSightTransform.forward);
+        Vector3 up = _gunBaseTransform.InverseTransformDirection(selectedSightTransform.up);
+        _gunSightReflector.transform.localRotation = Quaternion.LookRotation(forward, up);
     }
 
     public void AddSight(Transform newSight)
@@ -45,6 +69,7 @@ public class GunSightController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1) && _aimingTimer < 0.05f)
         {
+        
             GetRandomSight();
         }
 
@@ -60,9 +85,11 @@ public class GunSightController : MonoBehaviour
         _aimingTimer = Mathf.Clamp(_aimingTimer, 0, _aimTime);
         float lerpAmount = _aimingTimer / _aimTime;
 
-        _gunTransform.position = Vector3.Lerp(_baseGunPosition, _sightPosition, lerpAmount);
-        //_gunTransform.rotation = Quaternion.Euler(Vector3.Lerp(_baseGunRotation.eulerAngles, _sightRotation.eulerAngles, lerpAmount));
-        _gunTransform.rotation = Quaternion.Slerp(Quaternion.identity, _sightRotation, lerpAmount);
+        _gunBaseTransform.localPosition = _sightPosition;
+
+        //_gunBaseTransform.localPosition = Vector3.Lerp(_baseGunPosition, Vector3.zero, lerpAmount);
+        //old: _gunTransform.rotation = Quaternion.Euler(Vector3.Lerp(_baseGunRotation.eulerAngles, _sightRotation.eulerAngles, lerpAmount));
+        //_gunBaseTransform.localRotation = Quaternion.Slerp(Quaternion.identity, _sightRotation, lerpAmount);
     }
 
 

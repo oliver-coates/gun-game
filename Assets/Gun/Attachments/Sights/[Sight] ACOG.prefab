@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &981154401808930215
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6646863925823772865}
+  m_Layer: 0
+  m_Name: Sight Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6646863925823772865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981154401808930215}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.05, z: -0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6992839992264266921}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3317255240771911270
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4618520147541698019}
   m_Layer: 0
-  m_Name: Barrel Socket
+  m_Name: Sight Socket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3317255240771911270}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.3}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42,7 +73,7 @@ GameObject:
   - component: {fileID: 6992839992264266921}
   - component: {fileID: 6992839992264266926}
   m_Layer: 0
-  m_Name: '[Barrel] Extended Barrel'
+  m_Name: '[Sight] ACOG'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,6 +93,7 @@ Transform:
   m_Children:
   - {fileID: 6992839992272468081}
   - {fileID: 4618520147541698019}
+  - {fileID: 6646863925823772865}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -79,13 +111,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sockets:
   - {fileID: 4618520147541698019}
-  sights: []
-  type: 1
-  damageMultiplier: 1.25
-  firerateMultiplier: 0.8
-  soundMultiplier: 1.3
-  accuracyMultiplier: 1.1
-  forceMultiplier: 1.2
+  sights:
+  - {fileID: 6646863925823772865}
+  type: 3
+  damageMultiplier: 1
+  firerateMultiplier: 1
+  soundMultiplier: 1
+  accuracyMultiplier: 1.25
+  forceMultiplier: 1
   magSize: 0
 --- !u!1 &6992839992272468080
 GameObject:
@@ -113,7 +146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6992839992272468080}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.15}
+  m_LocalPosition: {x: 0, y: 0.05, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []

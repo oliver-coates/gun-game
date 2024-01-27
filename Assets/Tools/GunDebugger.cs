@@ -9,6 +9,9 @@ public class GunDebugger : MonoBehaviour
     [Header("Prefabs:")]
     public GameObject extendedBarrel;
     public GameObject doubleBarrel;
+    public GameObject redDot;
+    public GameObject Acog;
+    public GameObject opticalScope;
 
     public void AddAttachment(GameObject attachmentObj)
     {
@@ -24,5 +27,20 @@ public class GunDebugger : MonoBehaviour
     public void AddDoubleBarrel()
     {
         AddAttachment(doubleBarrel);
+    }
+
+    public void AddRedDot()
+    {
+        AddAttachment(redDot);
+    }
+
+    public void AddOpticalScope()
+    {
+        AddAttachment(opticalScope);
+    }
+
+    public void AddAcog()
+    {
+        AddAttachment(Acog);
     }
 }
