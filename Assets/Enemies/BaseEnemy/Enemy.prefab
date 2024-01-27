@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 7511550350483602305}
   - component: {fileID: 7511550350483602306}
   - component: {fileID: 4718151224074800608}
+  - component: {fileID: 298603265}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -168,5 +169,22 @@ MonoBehaviour:
   enemyState: 0
   attackRange: 1
   OnEnemyAttacking:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &298603265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7511550350483602307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76da4dcb4514d4540b4c0a53b94cdae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  healthText: {fileID: 1500616598439035906, guid: 26e3e1e2f3524a54396df023ebd2e305, type: 3}
+  OnPlayerDied:
     m_PersistentCalls:
       m_Calls: []
