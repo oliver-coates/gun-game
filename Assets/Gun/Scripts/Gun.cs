@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-
+    public event Action onShoot;
     
     [Header("References:")]
     [SerializeField] private GunSightController _gunSightController;
@@ -247,6 +248,8 @@ public class Gun : MonoBehaviour
 
     private void Shoot()
     {
+        onShoot?.Invoke();
+        
         _firerateTimer = _firerate;
         foreach (Transform bulletSpawnLocation in _barrelSockets)
         {
@@ -256,15 +259,15 @@ public class Gun : MonoBehaviour
             Vector3 spawnPosition = bulletSpawnLocation.position;
             
             Quaternion forwardRotation = Quaternion.LookRotation(bulletSpawnLocation.forward);
-            Quaternion spawnRotation = Quaternion.Lerp(forwardRotation, Random.rotation, _bulletSpawnRandomRot);
+            Quaternion spawnRotation = Quaternion.Lerp(forwardRotation, UnityEngine.Random.rotation, _bulletSpawnRandomRot);
 
             // Determine what direction the bullet should fly
             Vector3 forceDirection = bulletSpawnLocation.forward;
 
             // Add innacuracy
             float inaccuracy = (1 - _accuracy) * _accuracyTuner;
-            forceDirection += bulletSpawnLocation.up * Random.Range(-inaccuracy, inaccuracy);
-            forceDirection += bulletSpawnLocation.right * Random.Range(-inaccuracy, inaccuracy);
+            forceDirection += bulletSpawnLocation.up * UnityEngine.Random.Range(-inaccuracy, inaccuracy);
+            forceDirection += bulletSpawnLocation.right * UnityEngine.Random.Range(-inaccuracy, inaccuracy);
 
             Vector3 spawnForce = forceDirection * _bulletForce;
             
@@ -273,7 +276,7 @@ public class Gun : MonoBehaviour
             bullet.Init(spawnPosition, spawnRotation, spawnForce, _damage);
 
             // Play random sound
-            AudioClip randSound = _shootSounds[Random.Range(0, _shootSounds.Count)];
+            AudioClip randSound = _shootSounds[UnityEngine.Random.Range(0, _shootSounds.Count)];
             _audioSource.PlayOneShot(randSound, _gunSound);
         }
         
@@ -319,7 +322,7 @@ public class Gun : MonoBehaviour
     {
         List<Transform> socketList = GetSocketListFromAttachmentType(type);
 
-        Transform randomSocket = socketList[Random.Range(0, socketList.Count)];
+        Transform randomSocket = socketList[UnityEngine.Random.Range(0, socketList.Count)];
         socketList.Remove(randomSocket);
 
         return randomSocket;
