@@ -321,7 +321,7 @@ public class Gun : MonoBehaviour
                 return _magazineSockets;
         }
         return null;
-    }aaaaaaaaaaaa
+    }
 
     public Transform RetrieveRandomSocket(Attachment.AttachmentType type)
     {
