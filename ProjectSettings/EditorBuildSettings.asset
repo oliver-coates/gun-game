@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: db0ac86d90d464f4b845e20011a8bb19
+  - enabled: 1
+    path: Assets/Scenes/Kelso.unity
+    guid: a2f9bfe9b0e47504d902e7543f89392d
   m_configObjects: {}

@@ -12,6 +12,9 @@ public class Grenade : MonoBehaviour
     public float maxDamage = 200f;
     private bool hasExploded = false;
 
+    public AudioSource audioSource;
+    public List<AudioClip> explosionSounds;
+
     private void OnCollisionEnter(Collision other)
     {
         if (!hasExploded)
@@ -25,6 +28,8 @@ public class Grenade : MonoBehaviour
     private IEnumerator CExplode()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, explosionRadius);
+
+        audioSource.PlayOneShot(explosionSounds[Random.Range(0, explosionSounds.Count)]);
 
         foreach (Collider hit in hits)
         {

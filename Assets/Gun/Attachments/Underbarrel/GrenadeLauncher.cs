@@ -8,6 +8,9 @@ public class GrenadeLauncher : MonoBehaviour
     public Transform shootLocation;
     public GameObject grenadePrefab;
 
+    public AudioSource audioSource;
+    public AudioClip thumpSound;
+
     private Gun gun;
 
     [Range(0.01f, 1f)]
@@ -49,6 +52,8 @@ public class GrenadeLauncher : MonoBehaviour
 
         Rigidbody rb = Instantiate(grenadePrefab, shootLocation.position, shootLocation.rotation).GetComponent<Rigidbody>();
         rb.AddForce(shootLocation.forward * shootForce);
+
+        audioSource.PlayOneShot(thumpSound);
     }
 
    

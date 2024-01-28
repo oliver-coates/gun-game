@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform _sprintAnimator;
     [SerializeField] private PlayerMovement _playerMovement;
     public AudioSource _audioSource;
+    public Image _ammoImage;
 
     #region Stats
     [Header("Base Stats:")]
@@ -111,6 +113,8 @@ public class Gun : MonoBehaviour
     {    
         ListenForInput();
         AnimateTopModel();
+
+        _ammoImage.fillAmount = (_ammo / _magazineSize);
     }
 
     private void ListenForInput()

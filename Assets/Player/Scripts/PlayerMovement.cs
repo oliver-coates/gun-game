@@ -25,6 +25,11 @@ public class PlayerMovement : MonoBehaviour
     public float mouseSensitivity = 1f;
     float pitch = 0f;
 
+    public float footstepMoveThreshold = 0.4f;
+    private float footstepMoveTimer;
+
+    public List<AudioClip> footstepSounds;
+    public AudioSource audioSource;
 
     private void Start()
     {
@@ -48,6 +53,26 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isSprinting = false;
+        }
+
+        footstepMoveTimer -= Time.deltaTime;
+        if (isSprinting)
+        {
+            footstepMoveTimer -= Time.deltaTime * 0.5f;            
+        }
+
+
+        if (playerMoving)
+        {
+            if (footstepMoveTimer < 0)
+            {
+                // Play footstep sound
+
+                AudioClip clip = footstepSounds[Random.Range(0, footstepSounds.Count)];
+                audioSource.PlayOneShot(clip);
+
+                footstepMoveTimer = footstepMoveThreshold;
+            }
         }
 
         move = Vector3.Lerp(move, transform.TransformVector( new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"))),0.1f);
