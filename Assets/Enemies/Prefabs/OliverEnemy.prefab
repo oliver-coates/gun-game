@@ -103,6 +103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  pickUpPrefab: {fileID: 9068416211150696949, guid: 67ac8a4c98392c94db9de668b7eede71, type: 3}
+  percentChangeOfDrop: 29.6
   healthText: {fileID: 1500616598439035906, guid: 26e3e1e2f3524a54396df023ebd2e305, type: 3}
   OnEnemyDied:
     m_PersistentCalls:
@@ -146,13 +148,11 @@ MonoBehaviour:
   minInterval: 0.5
   maxInterval: 4
   audioClips:
-  - {fileID: 8300000, guid: d90add77546b28540a6249944dd36d48, type: 3}
-  - {fileID: 8300000, guid: 3de32f7650915da4fb4e8a40ea79536f, type: 3}
-  - {fileID: 8300000, guid: add2798a4ca21c54f8006e2fe593a0af, type: 3}
-  - {fileID: 8300000, guid: b3a9640d3f68f644bb057b804c69371a, type: 3}
+  - {fileID: 8300000, guid: a263ef97b246e90469b3fc77e52d7ac4, type: 3}
+  - {fileID: 8300000, guid: 3544180a2de52b04285d7ce404bcbd1c, type: 3}
+  - {fileID: 8300000, guid: d207b4ad475d12c43b0c1151230d7397, type: 3}
+  - {fileID: 8300000, guid: 7f3ec785c78b33040afbfa5157806528, type: 3}
   - {fileID: 8300000, guid: 1f657d9cfe8981b4fa3df864f7fe8d78, type: 3}
-  - {fileID: 8300000, guid: 23698b8ea440d62448c754aee5ce69b5, type: 3}
-  - {fileID: 8300000, guid: 81e01a5272b73364bbdbe562b40a9919, type: 3}
 --- !u!82 &8015031805796434434
 AudioSource:
   m_ObjectHideFlags: 0

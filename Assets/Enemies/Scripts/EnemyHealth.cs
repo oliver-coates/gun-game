@@ -13,6 +13,11 @@ public class EnemyHealth : MonoBehaviour
     private float maxHealth = 100f;
     private float health;
     private bool canDie = true;
+
+    [Tooltip("The prefab we will spawn when we die")]
+    public Transform pickUpPrefab;
+    [Range(0,100f)]
+    public float percentChangeOfDrop = 100f;
     
     public DamageText healthText;
 
@@ -24,17 +29,16 @@ public class EnemyHealth : MonoBehaviour
     {
         //initialize the health
         health = maxHealth;
+        if(pickUpPrefab == null)
+        {
+            Debug.LogError("You forgot the pickup prefab!!");
+        }
     }
 
 
     private void Update()
     {
 
-        //Testing the damage partcile system
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            TakeDamage(Random.Range(5f,1000f)); 
-        }
     }
 
 
@@ -53,7 +57,19 @@ public class EnemyHealth : MonoBehaviour
             Debug.Log("We are dead");
             OnEnemyDied.Invoke();
             canDie = false;
+            DropPickUp();
             Destroy(gameObject, 5f);
+            
+        }
+    }
+
+    private void DropPickUp()
+    {
+        float chance = UnityEngine.Random.Range(0f, 100f);
+        if (chance < percentChangeOfDrop)
+        {
+            //we drop one
+            Instantiate(pickUpPrefab, transform.position, transform.rotation);
         }
     }
 
