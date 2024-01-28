@@ -12,6 +12,8 @@ public class PickupScript : MonoBehaviour
 
     private void Start()
     {
+        
+
         var i = UnityEngine.Random.Range(0, attachments.Length);
         Debug.Log($"Adding attachemtn {attachments[i].name}");
         attachmentPrefab = Instantiate(attachments[i],pivot);
