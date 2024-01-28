@@ -82,10 +82,11 @@ MonoBehaviour:
   sights: []
   type: 1
   damageMultiplier: 1.25
-  firerateMultiplier: 1
+  firerateMultiplier: 1.15
   soundMultiplier: 1
-  accuracyMultiplier: 1.25
+  accuracyMultiplier: 1
   forceMultiplier: 1.25
+  bulletRandomRotation: 0
   magSize: 0
 --- !u!1001 &3875873128312566870
 PrefabInstance:

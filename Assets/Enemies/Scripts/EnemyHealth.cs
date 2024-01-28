@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 /// <summary>
@@ -39,6 +40,19 @@ public class EnemyHealth : MonoBehaviour
     private void Update()
     {
 
+    }
+
+    public void Init(float difficulty)
+    {
+        Vector3 baseSize = Vector3.one * 0.65f;
+        Vector3 size = baseSize + (Vector3.one * difficulty);
+
+        transform.localScale = size;
+        health = difficulty * 100f;
+
+        NavMeshAgent agent = GetComponent<NavMeshAgent>(); 
+
+        agent.speed = agent.speed + (agent.speed * difficulty / 2);
     }
 
 

@@ -45,10 +45,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 2
   m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_SpotAngle: 53.48886
+  m_InnerSpotAngle: 23.003918
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -167,10 +167,11 @@ MonoBehaviour:
   sights: []
   type: 2
   damageMultiplier: 1
-  firerateMultiplier: 1
+  firerateMultiplier: 1.25
   soundMultiplier: 1
   accuracyMultiplier: 1
   forceMultiplier: 1
+  bulletRandomRotation: 0
   magSize: 0
 --- !u!1001 &3951886773940123678
 PrefabInstance:

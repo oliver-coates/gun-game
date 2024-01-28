@@ -33,6 +33,6 @@ public class MenuController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Kelso");
     }
 }
