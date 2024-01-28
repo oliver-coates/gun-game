@@ -20,7 +20,7 @@ public class Gun : MonoBehaviour
     #region Stats
     [Header("Base Stats:")]
     private readonly float _baseFireRate = 0.2f;
-    private readonly float _baseDamage = 10f;
+    private readonly float _baseDamage = 30f;
     private readonly float _baseReloadTime = 1.5f;
     private readonly float _baseGunSound = 1;
     private readonly float _baseBulletForce = 100;

@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.04
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.3764706, g: 0.11960784, b: 0.05882353, a: 1}
+  m_AmbientSkyColor: {r: 0.7735849, g: 0.3552475, b: 0.25907797, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -818,6 +818,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 422023437, guid: 80c9498197ac3994f8352c479b059613, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753505489, guid: 80c9498197ac3994f8352c479b059613, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 67e4ba9b25f0a344fb8e50f8521e9133, type: 2}
+    - target: {fileID: 753505489, guid: 80c9498197ac3994f8352c479b059613, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8764433489669743009, guid: 67e4ba9b25f0a344fb8e50f8521e9133, type: 2}
     - target: {fileID: 1625517664161013397, guid: 80c9498197ac3994f8352c479b059613, type: 3}
       propertyPath: m_LocalPosition.x
       value: 86.88
@@ -881,6 +893,10 @@ PrefabInstance:
     - target: {fileID: 1625517666012759668, guid: 80c9498197ac3994f8352c479b059613, type: 3}
       propertyPath: m_Name
       value: EnemySpawnPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625517666012759670, guid: 80c9498197ac3994f8352c479b059613, type: 3}
+      propertyPath: waveIncrease
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 1625517666012759671, guid: 80c9498197ac3994f8352c479b059613, type: 3}
       propertyPath: m_RootOrder
@@ -1025,7 +1041,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1870167324941407559, guid: 31607a21fc9142648993aa0e0b9e81b6, type: 3}
       propertyPath: weight
-      value: 0.508
+      value: 0.769
       objectReference: {fileID: 0}
     - target: {fileID: 3132311318590325940, guid: 31607a21fc9142648993aa0e0b9e81b6, type: 3}
       propertyPath: m_RootOrder
@@ -2455,10 +2471,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4728993169872269268, guid: 7bd91858ff28d374a82ff49a8e836fe8, type: 3}
-      propertyPath: sprintSpeedMultiplier
-      value: 1.75
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bd91858ff28d374a82ff49a8e836fe8, type: 3}
 --- !u!1001 &1703681350
@@ -2676,8 +2688,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.9187591, g: 0.9528302, b: 0.74158955, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.9843019, g: 1, b: 0.9103774, a: 1}
+  m_Intensity: 1.12
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2719,7 +2731,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 1.19
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}

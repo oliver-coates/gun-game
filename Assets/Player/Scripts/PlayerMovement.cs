@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Image blackout;
+
     private CharacterController controller;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
@@ -33,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        blackout.enabled = true;
+        blackout.CrossFadeAlpha(0, 1f, true);
+
         controller =  GetComponent<CharacterController>();
     }
 

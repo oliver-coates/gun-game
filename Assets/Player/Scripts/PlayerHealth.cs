@@ -43,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            Application.Quit();
             OnPlayerDied.Invoke();
         }
         //sdjust the helath bar

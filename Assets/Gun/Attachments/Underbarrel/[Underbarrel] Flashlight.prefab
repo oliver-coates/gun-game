@@ -167,7 +167,7 @@ MonoBehaviour:
   sights: []
   type: 2
   damageMultiplier: 1
-  firerateMultiplier: 1.25
+  firerateMultiplier: 0.75
   soundMultiplier: 1
   accuracyMultiplier: 1
   forceMultiplier: 1
