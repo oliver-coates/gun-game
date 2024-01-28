@@ -145,8 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975f853beac362e408acbca536950940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minInterval: 0.5
-  maxInterval: 4
+  minInterval: 5
+  maxInterval: 15
   audioClips:
   - {fileID: 8300000, guid: a263ef97b246e90469b3fc77e52d7ac4, type: 3}
   - {fileID: 8300000, guid: 3544180a2de52b04285d7ce404bcbd1c, type: 3}
