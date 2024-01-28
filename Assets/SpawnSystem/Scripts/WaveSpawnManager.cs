@@ -15,6 +15,10 @@ public class WaveSpawnManager : MonoBehaviour
 
     [Tooltip("How Much the number of enemies increase per wave"), Range(1.0f, 2.0f)]
     public float waveIncrease = 1.5f;
+
+    public float waveDifficulty = 0.3f;
+    public float difficultyIncreasePerWave = 0.1f;
+    public float waveDifficultyRandomness = 0.15f;
   
     //spawn intterval. How long between wave spawns
     public float spawnInterval = 3f;
@@ -73,8 +77,15 @@ public class WaveSpawnManager : MonoBehaviour
             //find a random spawn
             var randSpawn = UnityEngine.Random.Range(0, numSpawns);
             var randEnemy = UnityEngine.Random.Range(0, numEnemies);
+            
             var enemy = Instantiate(enemies[randEnemy], spawnPoints[randSpawn].transform.position, spawnPoints[randSpawn].transform.rotation);
+            
+            float enemyDifficulty = UnityEngine.Random.Range(waveDifficulty * (1 - waveDifficultyRandomness), waveDifficulty * (1 * waveDifficultyRandomness));
+            Debug.Log("spawning enemy with difficulty " + enemyDifficulty);
+            enemy.GetComponent<EnemyHealth>().Init(enemyDifficulty);
         }
+
+        waveDifficulty += difficultyIncreasePerWave;
     }
 
     void UpdateWaveInfoText()

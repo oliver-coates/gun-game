@@ -54,7 +54,7 @@ MonoBehaviour:
   damageMultiplier: 1
   firerateMultiplier: 1
   soundMultiplier: 1
-  accuracyMultiplier: 1
+  accuracyMultiplier: 1.25
   forceMultiplier: 1
   bulletRandomRotation: 0
   magSize: 0

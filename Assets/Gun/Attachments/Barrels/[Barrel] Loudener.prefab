@@ -82,10 +82,10 @@ MonoBehaviour:
   sights: []
   type: 1
   damageMultiplier: 1.5
-  firerateMultiplier: 0.75
+  firerateMultiplier: 1
   soundMultiplier: 1.5
   accuracyMultiplier: 0.8
-  forceMultiplier: 0.7
+  forceMultiplier: 0.8
   bulletRandomRotation: 0.2
   magSize: 0
 --- !u!1001 &8450241544883823752
