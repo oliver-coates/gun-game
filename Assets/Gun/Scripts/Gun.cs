@@ -89,6 +89,7 @@ public class Gun : MonoBehaviour
     #region Audio
 
     [SerializeField] private List<AudioClip> _shootSounds;
+    [SerializeField] private List<AudioClip> _attachmentSounds;
     [SerializeField] private AudioClip _reloadSound;
 
     #endregion
@@ -361,5 +362,9 @@ public class Gun : MonoBehaviour
         }
 
         UpdateStats();
+
+        //play random audio
+        AudioClip randSound = _attachmentSounds[UnityEngine.Random.Range(0, _attachmentSounds.Count)];
+        _audioSource.PlayOneShot(randSound);
     }
 }

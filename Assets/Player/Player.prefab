@@ -180,6 +180,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3a79e217fd7499b4ab94e881d451e73f, type: 3}
   - {fileID: 8300000, guid: 823ce408a021d6741860c530a6d8388a, type: 3}
   - {fileID: 8300000, guid: c092d91701491f24dae45c83a38f1f1c, type: 3}
+  _attachmentSounds:
+  - {fileID: 8300000, guid: f60c8b752233b6640a7b2fbc6fe2df50, type: 3}
+  - {fileID: 8300000, guid: ed10b1855c0debe418094fb63308deab, type: 3}
+  - {fileID: 8300000, guid: 4248d429015a2254f92d35f96f0310ef, type: 3}
   _reloadSound: {fileID: 8300000, guid: 5a5a86b8eef964c4e80f06959747de6f, type: 3}
 --- !u!82 &649946959
 AudioSource:
